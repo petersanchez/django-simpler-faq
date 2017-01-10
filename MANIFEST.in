@@ -1,2 +1,2 @@
-include *.txt *.md
+include *.txt *.rst *.md
 recursive-include simpler_faq/templates *
