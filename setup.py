@@ -3,7 +3,7 @@ from distutils.core import setup
 
 
 project_name = 'simpler_faq'
-long_description = open('README.md').read()
+long_description = open('README.rst').read()
 
 packages, data_files = [], []
 root_dir = os.path.dirname(__file__)
