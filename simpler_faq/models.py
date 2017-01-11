@@ -19,7 +19,7 @@ class Question(models.Model):
     text = models.CharField(max_length=200)
     answer_text = models.TextField()
     topic = models.ForeignKey(Topic, related_name='questions')
-    order = models.IntegerField()
+    order = models.PositiveIntegerField()
     related_questions = models.ManyToManyField(
         'self',
         related_name='related_questions',
