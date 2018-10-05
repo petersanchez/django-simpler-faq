@@ -1,7 +1,9 @@
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
 
+@python_2_unicode_compatible
 class Topic(models.Model):
     text = models.CharField(max_length=200)
     order = models.PositiveIntegerField()
@@ -11,14 +13,17 @@ class Topic(models.Model):
         verbose_name_plural = _('Topics')
         ordering = ['order']
 
-    def __unicode__(self):
-        return u'({0}) {1}'.format(self.order, self.text)
+    def __str__(self):
+        return '({0}) {1}'.format(self.order, self.text)
 
 
+@python_2_unicode_compatible
 class Question(models.Model):
     text = models.CharField(max_length=200)
     answer_text = models.TextField()
-    topic = models.ForeignKey(Topic, related_name='questions')
+    topic = models.ForeignKey(
+        Topic, related_name='questions', on_delete=models.DO_NOTHING
+    )
     order = models.PositiveIntegerField()
     related_questions = models.ManyToManyField(
         'self',
@@ -31,5 +36,5 @@ class Question(models.Model):
         verbose_name_plural = _('Questions')
         ordering = ('order',)
 
-    def __unicode__(self):
+    def __str__(self):
         return u'({0}) {1}'.format(self.order, self.text)
