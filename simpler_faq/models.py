@@ -26,9 +26,7 @@ class Question(models.Model):
     )
     order = models.PositiveIntegerField()
     related_questions = models.ManyToManyField(
-        'self',
-        related_name='related_questions',
-        blank=True,
+        'self', related_name='related_questions', blank=True,
     )
 
     class Meta:
