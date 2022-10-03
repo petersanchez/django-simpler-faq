@@ -1,6 +1,10 @@
-from django.db import models
-from django.utils.translation import ugettext_lazy as _
 from six import python_2_unicode_compatible
+
+from django.db import models
+try:
+    from django.utils.translation import gettext_lazy as _
+except ImportError:
+    from django.utils.translation import ugettext_lazy as _
 
 
 @python_2_unicode_compatible
