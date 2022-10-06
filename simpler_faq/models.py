@@ -29,9 +29,7 @@ class Question(models.Model):
         Topic, related_name='questions', on_delete=models.DO_NOTHING
     )
     order = models.PositiveIntegerField()
-    related_questions = models.ManyToManyField(
-        'self', related_name='related_questions', blank=True,
-    )
+    related_questions = models.ManyToManyField('self', blank=True)
 
     class Meta:
         verbose_name = _('Question')
@@ -39,4 +37,4 @@ class Question(models.Model):
         ordering = ('order',)
 
     def __str__(self):
-        return u'({0}) {1}'.format(self.order, self.text)
+        return '({0}) {1}'.format(self.order, self.text)

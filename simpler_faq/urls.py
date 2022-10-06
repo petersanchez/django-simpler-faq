@@ -1,14 +1,12 @@
-#! coding: utf-8
+try:
+    from django.urls import re_path
+except ImportError:
+    from django.conf.urls import url as re_path
+
 from .views import Topics
 
-try:
-    from django.urls import path
-    urlpatterns = [
-        path('', Topics.as_view(), name='faq'),
-    ]
-except ImportError:
-    from django.conf.urls import url
-    urlpatterns = [
-        url(r'^', Topics.as_view(), name='faq'),
-    ]
+
+urlpatterns = [
+    re_path(r'^', Topics.as_view(), name='faq'),
+]
 
